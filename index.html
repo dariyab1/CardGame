@@ -9,67 +9,65 @@
         <link rel="stylesheet" href="style.css" />
     <script>
         let moves=0; //tracks the score (total cards flipped)
-        let firstCard;
-        let secondCard;
-        let secondCardFlipped;
-        let userScore;
-        let matchesToWin=8;
+        let firstCard; //first card that gets flipped over
+        let secondCard; //second card that gets flipped over
+        let userScore; //self explanatory
+        let matchesToWin=8; //how many matches need to be made to win
+        let cardsFlipped; //how many cards are currently revealed
+        let started; //if game is in session or not
         
 
 
-        function initialize(){  
+        function initialize(){   
             started=false;
             userScore=document.getElementById("score");
         }
 
-        function startGame(){ //starts game duh
+        function startGame(){ //starts game 
             started=true;
             document.getElementById("startButton").disabled=true;
-            secondCardFlipped=false;
+            cardsFlipped=1;
+
         }
 
-        function flipCard(newPic, frontID){  //flips cards based on how many are already flipped
+        function flipCard(newPic, frontID){  //flips cards to reveal image
             
             if(!started){
                 startGame();
             }
 
-            moves++;
-
+            moves++;  
             currCard=document.getElementById(frontID);
             
-            if(secondCardFlipped==true){
+            if(cardsFlipped==2){
                 secondCard=document.getElementById(frontID);
                 secondCard.src=`${newPic}`;
                 if(!(firstCard.src===secondCard.src)){
                     setTimeout(() => {
                         firstCard.src="blank.jpg";
                         secondCard.src="blank.jpg";}
-                        ,700);
-                    secondCardFlipped=false;
-                    score.innerHTML="hello";
+                        ,1000);
                 } 
                 else {
                     matchesToWin-=2;
-                    secondCardFlipped=false;
                     if(matchesToWin==0){
                         //print some kind of result.
                     }
                 }
+                cardsFlipped=1;
             }
-            else if(secondCardFlipped==false){
+            else if(cardsFlipped==1){
                 firstCard=currCard;
-                firstCard.src=`${newPic}`;
-                secondCardFlipped=true; //next card will be recorded as card2;
+                firstCard.src=`${newPic}`;  //by changing src, we get a new image on the screen
+                cardsFlipped++; //2 cards will be face up now;
                 
             }
             display();
         }
 
-        
 
         function display(){
-            //userScore.innerHTML = "Score: "+moves;
+            userScore.innerHTML = "Score: "+moves;
         }
 
     </script>
