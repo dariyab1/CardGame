@@ -15,7 +15,7 @@ body{
     color: white;
     font-size: 30px;
     color:#282A3A; 
-    height: 120px;
+    
     margin-top: auto;
     margin-bottom: auto;
   }
@@ -27,8 +27,7 @@ body{
     background: #DCEDFF;
     padding: 10px; 
     color: black;
-    width: 700px;
-    height: 180px; 
+   
     margin-left: auto;
     margin-right: auto;
 }
@@ -69,4 +68,33 @@ body{
 #count { 
     display: flex; 
     justify-content: center;
+}
+
+@media (max-width:600px){
+    img{
+        width: 100px;
+        height: 150px;
+    }
+
+    .container{
+        gap: 5px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows:  1fr 1fr 1fr 1fr; 
+    }
+
+    .smallerheader{
+        width: 400px;
+    }
+
+}
+
+@media (max-width: 1024) {
+    .header{
+        height: 120px;
+    }
+
+    .smallerHeader{
+        width: 700px;
+        height: 180px; 
+    }
 }
